@@ -1,0 +1,1 @@
+https://onap.readthedocs.io/en/latest/submodules/vnfrqts/requirements.git/docs/Chapter8/Ansible-Playbook-Examples.html
