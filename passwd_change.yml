@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  become: true
+  gather_facts: false
+  pre_tasks:
+  - name: "install pexpect package"
+    shell: pip install pexpect
+    no_log: true
+    ignore_errors: true
+  tasks:
+  - name: "Change root password"
+    expect:
+     command: passwd {{ item }}
+     responses:
+      (?i)password: "Password"
+    no_log: true
+    with_items:
+      - subham
+      - ram
+      - rahim
+      - rahul
