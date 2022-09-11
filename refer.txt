@@ -1,6 +1,6 @@
-https://www.iamgini.com/cheatsheet-ansible
+#https://www.iamgini.com/cheatsheet-ansible
 https://blog.ippon.tech/ansible-tips-and-tricks/
-https://docs.ansible.com/ansible/2.8/modules/meta_module.html#meta-module
+#https://docs.ansible.com/ansible/2.8/modules/meta_module.html#meta-module
 https://www.mydailytutorials.com/working-date-timestamp-ansible/
 https://technotes.adelerhof.eu/ansible/cheat-sheet/
 https://jensd.be/587/linux/tips-tricks-for-ansible
