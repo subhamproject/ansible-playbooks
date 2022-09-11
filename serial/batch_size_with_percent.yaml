@@ -1,0 +1,32 @@
+---
+# rolling restarts (serial: 1)
+- hosts: main
+  gather_facts: false
+  become: True
+  serial:
+     - "10%"
+     - "20%"
+     - "100%"
+
+  vars:
+   - nginx_url: "http://localhost:80/"
+
+  pre_tasks:
+    - debug:
+       msg: "Restarting nginx"
+
+  tasks:
+   - name: restart nginx
+     service: name=nginx state=started
+
+   - name: pausing to verify nginx
+     uri:
+      url: "{{ nginx_url }}"
+     register: result
+     until: result.status == 200
+     retries: 60
+     delay: 1
+
+  post_tasks:
+   - debug:
+      msg: "nginx has been restarted"

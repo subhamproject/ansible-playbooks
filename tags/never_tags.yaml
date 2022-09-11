@@ -1,0 +1,41 @@
+---
+- hosts: localhost
+  tags:
+  - pmm
+  tasks:
+  - name: Uninstall PMM2 client
+    yum:
+      name: pmm-client2
+      state: absent
+    tags:
+      - never
+      - uninstall
+ 
+  - name: Install PMM2 client
+    yum:
+       name: pmm-client2
+       state: present
+    tags:
+      - install
+      - never
+ 
+  - name: create pmm-admin flags source
+    template:
+      src: pmm-admin-flags.txt.j2
+      dest: /etc/pmm/pmm-admin-flags.txt
+    tags:
+      - configure
+      - never
+ 
+  - name: setup pmm-agent
+    command: "pmm-agent setup --force @/etc/pmm/pmm-agent-flags.txt"
+    tags:
+     - configure
+     - never
+
+
+  - name: final task
+    debug:
+     msg: "running always"
+    tags:
+      - always

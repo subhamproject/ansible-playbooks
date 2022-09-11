@@ -1,0 +1,22 @@
+---
+- name: simple define vars at play level
+  hosts: main
+  gather_facts: false
+  tasks:
+    - name: display vars
+      vars:
+       deploy: yes
+       type: linux
+      debug:
+        var: "{{ item }}"
+      loop:
+        - deploy
+        - type
+    - name: show assigned group variables
+      vars:
+        msg: |
+             http_port:{{ hostvars[inventory_hostname]['http_port'] |default("8080")}}
+             thread_count:{{ hostvars[inventory_hostname]['thread_count'] | default("undefined") }}
+             secure:{{ hostvars[inventory_hostname]['secure']|default("true") }}
+      debug:
+         msg: "{{ msg.split('\n') }}"

@@ -1,0 +1,15 @@
+- name: rescue my errors
+  hosts: localhost
+  tasks:
+    - name: Try to reach host
+      block:
+        - name: "[Try reach DNS] Check Connection over DNS"
+          command: ping client01.demo.local -c 2
+          register: output
+      rescue:
+        - name: "[Rescue failed DNS] Check Connection over IP"
+          command: ping 127.0.0.1 -c 2
+          register: output
+      always:
+        - debug:
+            var: output

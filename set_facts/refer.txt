@@ -1,0 +1,23 @@
+for tests
+
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#testing-strings
+
+vars:
+  url: "https://example.com/users/foo/resources/bar"
+
+tasks:
+    - debug:
+        msg: "matched pattern 1"
+      when: url is match("https://example.com/users/.*/resources")
+
+    - debug:
+        msg: "matched pattern 2"
+      when: url is search("users/.*/resources/.*")
+
+    - debug:
+        msg: "matched pattern 3"
+      when: url is search("users")
+
+    - debug:
+        msg: "matched pattern 4"
+      when: url is regex("example\.com/\w+/foo")

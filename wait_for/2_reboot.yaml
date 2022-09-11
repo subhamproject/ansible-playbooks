@@ -1,0 +1,16 @@
+- hosts: main
+  become: yes
+  tasks:
+    - name: Upgrade all installed packages
+      shell: "echo hello"
+    
+    - name: Initiate Server Reboot
+      reboot:
+       msg: "Ansible Requested Restart"
+       pre_reboot_delay: 10
+       reboot_timeout: 900
+      register: reboot_result
+ 
+    - name: Report elapsed time for reboot.
+      debug:
+        msg: "The system rebooted in {{ reboot_result.elapsed }} seconds."

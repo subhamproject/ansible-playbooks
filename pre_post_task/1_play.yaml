@@ -1,0 +1,24 @@
+---
+- hosts: second
+  become: yes
+  pre_tasks:
+     - raw: sudo apt-get update -y
+     - raw: sudo apt-get -y install python-simplejson
+       register: py_simple_output
+  tasks:
+  
+    - debug: 
+        var=py_simple_output.stdout_lines
+    - name: get Python version
+      shell: python3 --version 2>&1
+      register: py_output
+    
+    - debug: 
+        var=py_output.stdout_lines
+      
+    - name: get git version
+      shell: git --version 2>&1
+      register: git_output
+    
+    - debug: 
+        var=git_output.stdout_lines

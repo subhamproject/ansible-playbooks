@@ -1,0 +1,11 @@
+---
+- name: Ansible debug module in action
+  hosts: main
+  gather_facts: false
+  tasks:
+          - name: Print system uptime
+            shell: uptime -p
+            register: system_uptime
+          - name: Print uptime of managed node
+            debug:
+              msg: "{{ system_uptime }}"

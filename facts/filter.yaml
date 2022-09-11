@@ -1,0 +1,14 @@
+- name: Explicitly using setup module
+  hosts: main
+  gather_facts: false
+  
+  tasks:
+
+    - name: Setup Module
+      setup:
+        filter: ansible_distribution
+
+    - name: Doing something
+      debug:
+        msg: "Spotted RHEL based distro. Proceeding with activity..."
+      when: ansible_distribution | lower in ["rocky","redhat","centos"]

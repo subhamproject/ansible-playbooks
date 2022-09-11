@@ -1,0 +1,15 @@
+tasks:
+
+    - name: Updating cache ( sudo apt update )
+      apt:
+        update_cache: true
+      tags: 
+          - cache_update
+          - pkg_mt
+
+    - name: Remove packages - no dependency
+      apt:
+        autoremove: yes
+      tags: 
+          - remove
+          - pkg_mt

@@ -1,0 +1,8 @@
+---
+- name: create users in manage nodes
+  user:
+    name: "{{ item }}"
+    state: present
+  loop:
+     - john
+     - peter      

@@ -1,0 +1,18 @@
+---
+- hosts: main
+  gather_facts: no
+  vars:
+    app_username: ''
+
+  pre_tasks:
+  - setup:
+      filter:
+        - 'ansible_*'
+
+  tasks:
+    - name: Checking common_users
+      assert:
+        that:
+          - common_users is not defined
+        success_msg: Not all the users are included
+    - assert: { that: "ansible_os_family != 'RedHat'" }

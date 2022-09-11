@@ -1,0 +1,25 @@
+---
+- name: demo playbook for when condition based on file exists
+  hosts: main
+  gather_facts: true
+  become: true
+  serial: 1
+  strategy: free
+
+  pre_tasks:
+   - name: check if passwd file exists
+     stat:
+       path: /etc/passwd
+     register: check
+   - debug:
+      var: check
+  tasks:
+   - name: create user on server
+     user:
+       name: "{{ item }}"
+       state: present
+       password: "{{  item | password_hash('sha512') }}"
+     loop:
+       - rama
+       - subham
+     when: check.stat.exists

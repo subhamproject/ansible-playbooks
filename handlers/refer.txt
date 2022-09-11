@@ -1,0 +1,12 @@
+- meta: flush_handlers
+
+Note that this will cause all pending handlers to run at that point, not just that specific one.
+
+https://www.shellhacks.com/ansible-run-handler-immediately-force/#:~:text=Handlers%20in%20Ansible%20are%20special,particular%20play%20have%20been%20completed.
+
+https://www.golinuxcloud.com/ansible-handlers/
+
+https://ostechnix.com/use-handlers-in-ansible-playbooks/ --IMP
+
+http://setgetweb.com/p/ansible/user_guide/playbooks_handlers.html
+

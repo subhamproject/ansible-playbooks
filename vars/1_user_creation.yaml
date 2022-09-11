@@ -1,0 +1,5 @@
+---
+- name: create users in manage nodes
+  user:
+    name: "{{ users }}"
+    state: present

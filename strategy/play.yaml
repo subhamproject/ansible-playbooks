@@ -1,0 +1,30 @@
+---
+- name: Retrieve System Resource Information
+  hosts: main
+  #strategy: linear
+  strategy: free
+  tasks:
+
+  - name: total_mem
+    shell: free -h | grep Mem | awk '{print $2}'
+    register: total_mem
+
+  - name: available_mem
+    shell: free -h | grep Mem | awk '{print $7}'
+    register: available_mem
+
+  - name: idle_cpu
+    shell: mpstat| grep all|awk '{print $13}'
+    register: idle_cpu
+
+  - set_fact:
+      stats: "{{ ansible_hostname }} Memory: {{ available_mem.stdout }}/{{ total_mem.stdout }} CPU Available: {{ idle_cpu.stdout }}"
+
+  - debug:
+      var: stats
+
+  - local_action: file name=../current_stats.txt state=touch
+    become: no
+
+  - local_action: lineinfile insertafter=EOF line={{ stats }} dest=../current_stats.txt
+    become: no

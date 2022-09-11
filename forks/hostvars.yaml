@@ -1,0 +1,33 @@
+---
+- name: magic vars check and display
+  hosts: main
+  gather_facts: true
+  tasks:
+    - name: get ansible facts details
+      debug:
+        var: ansible_facts['all_ipv4_addresses']
+
+    - name: get hostvars details
+      debug:
+        var: hostvars[inventory_hostname]['ansible_all_ipv4_addresses']
+
+    - name: from hostvars
+      debug:
+        var:  hostvars[inventory_hostname]['ansible_facts']['all_ipv4_addresses']
+
+    - name : Default Ipv4 address via hostvars
+      debug:
+        msg: default ipv4 address via hostvars is {{hostvars[inventory_hostname].ansible_default_ipv4.address}}
+
+
+    - name: Default Ipv4 address via ansible facts
+      debug:
+        msg: default ipv4 address via ansible facts is {{ansible_facts.default_ipv4.address}}
+
+
+    - name: all at once
+      debug:
+       var: hostvars[inventory_hostname]['ansible_default_ipv4']['address']
+    - name: final
+      debug:
+       var: ansible_facts['default_ipv4']['address']

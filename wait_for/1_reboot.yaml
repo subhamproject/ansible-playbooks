@@ -1,0 +1,22 @@
+- hosts: main
+  become: yes
+  tasks:
+    - name: Upgrade all installed packages
+      shell: "echo hello"
+
+    - name: Reboot after update
+      command: /sbin/shutdown -r 1 "Reboot after patching"
+      async: 0
+      poll: 0
+      ignore_errors: true
+
+    - name: Wait for server to become available
+      wait_for_connection:
+        delay: 60
+        timeout: 500 # This can vary use a timeout that is reasonable for your environment, most VM's will reboot before 500 seconds.
+      register: reboot_result
+
+
+    - name: Report elapsed time for reboot.
+      debug:
+        msg: "The system rebooted in {{ reboot_result.elapsed }} seconds."

@@ -1,0 +1,22 @@
+---
+#https://www.toptechskills.com/ansible-tutorials-courses/ansible-include-import-variables-tutorial-examples/
+- name: simple define include vars at play level
+  hosts: main
+  gather_facts: true
+
+  tasks:
+    - name: including vars
+      include_vars: "{{ item }}"
+      with_first_found:
+        - ./variable_files/{{ ansible_os_family | lower }}.yaml
+        - ./variable_files/{{ ansible_distribution | lower }}.yaml
+      when: ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'
+ 
+
+    - name: reading variable from include vars
+      debug:
+       var: "{{ item }}"
+      loop:
+        - http_port 
+        - service_name
+      when: ansible_os_family == 'Debian'  or ansible_os_family == 'RedHat'

@@ -1,0 +1,16 @@
+---
+- name: install Apache webserver
+  hosts: main
+  tasks:
+    - name: Update and upgrade apt packages
+      debug:
+        msg: "This will run always"
+      tags:
+        - always
+
+    - name: Restart Apache Webserver
+      service:
+        name: apache2
+        state: restarted
+      tags:
+        - restart_apache

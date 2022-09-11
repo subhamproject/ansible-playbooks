@@ -1,0 +1,15 @@
+---
+#https://www.toptechskills.com/ansible-tutorials-courses/ansible-include-import-variables-tutorial-examples/
+- name: simple define vars at play level
+  hosts: main
+  gather_facts: false
+  vars_files: 
+    - ./variable_files/main_file.yaml
+
+  tasks:
+    - name: reading variable from var file
+      debug:
+        var: "{{ item }}"
+      loop:
+        - http_port 
+        - service_name

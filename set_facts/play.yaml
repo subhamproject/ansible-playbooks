@@ -1,0 +1,19 @@
+---
+- name: demo playbook to test set fact
+  hosts: main
+  gather_facts: false
+
+  pre_tasks:
+   - setup:
+      filter:
+         - 'ansible_*'
+
+  tasks:
+   - set_fact:
+       size: "{{ item.size_available }}"
+     with_items:
+       -  "{{ ansible_mounts }}"
+
+   - name: display mount info
+     debug:
+       var: size

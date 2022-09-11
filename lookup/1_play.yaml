@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  tasks:
+   - debug: msg="core plugin {{ lookup('ini', 'core_plugin file=file.ini section=plugins') }}"
+   - debug: msg="core plugin {{ lookup('ini', 'bind_port file=file.ini section=default') }}"

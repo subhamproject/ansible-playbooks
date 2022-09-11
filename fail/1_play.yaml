@@ -1,0 +1,20 @@
+---
+- name: Test command
+  hosts: localhost
+  tasks:
+    - name: Set command details
+      set_fact:
+    	test_cmd: "hostname -f"
+
+    - name: "run command on localmachine"
+      command: "{{ test_cmd }}"
+      register: out
+
+    - name: fail message
+      fail:
+    	msg: "failed - invalid machine."
+      when: "{{ 'mymachine' in out.stdout }}"
+
+    - name: Print the msg
+      debug:
+    	msg: "{{ out.stdout }}"

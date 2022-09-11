@@ -1,0 +1,19 @@
+---
+- name: demo playbook to check max fail percentage
+  hosts: main
+  gather_facts: false
+  become: true
+  max_fail_percentage: 0
+  vars:
+     service: vim
+  tasks:
+    - name: check if nginx present
+      shell: systemctl status nginx |grep running
+      register: check
+      ignore_errors: true
+    - name: install pkg if not exists
+      package:
+         name: "{{ item }}"
+         state: present
+      loop:
+         - "{{ service }}"

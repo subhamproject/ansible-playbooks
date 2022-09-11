@@ -1,0 +1,65 @@
+---
+- name: static inventory playbook
+  hosts: main
+  gather_facts: True
+  become: true
+  become_method: sudo
+  become_user: root
+  any_errors_fatal: True
+ 
+  tasks:
+  - name: display variables from servers
+    vars:
+      myVar: |
+        Server: {{ static_host }}
+        Server Name: {{ server_name }}
+    debug: 
+      msg: "{{ myVar.split('\n') }}"
+ 
+  - name: display ansible all ipv4 address
+    debug:
+      var : ansible_facts['all_ipv4_addresses']
+      #var : ansible_facts['nodename']
+
+  - name: display inventory short hostname
+    debug:
+      msg: inventory short hostname is  {{ inventory_hostname_short }}
+
+
+  - name: static inventory hostname
+    debug:
+     msg: inventory hostname is {{ inventory_hostname }}
+
+
+  - name: static inventory ansible hostname
+    debug:
+     msg: ansible hostname is  {{ ansible_hostname }}
+
+
+  - name: static inventory dir name
+    debug:
+     msg: ansible inventory dirname is  {{ inventory_dir }}
+
+
+  - name: static inventory file name
+    debug:
+     msg: ansible inventory file name is  {{ inventory_file  }}
+
+
+  - name: static inventory playbook dir
+    debug:
+     msg: ansible inventory playbook dir is {{ playbook_dir }}
+
+
+  - name: static inventory groups
+    debug:
+     msg: ansible group name list is  {{ groups }}
+
+
+  - name: static inventory groups names
+    debug:
+     msg: ansible group names is  {{ group_names }}
+
+  - name: static inventory hostvars details
+    debug:
+      var: hostvars

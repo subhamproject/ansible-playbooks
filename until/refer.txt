@@ -1,0 +1,5 @@
+https://www.middlewareinventory.com/blog/ansible-retry-examples/#:~:text=about%20it%20later.-,Ansible%20Retries%20without%20Until,want%20a%20task%20to%20retry.
+
+https://coderwall.com/p/ww4dxw/ansible-retry-task
+
+https://www.redhat.com/sysadmin/yaml-nesting-lists-comments-ansible

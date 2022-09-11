@@ -1,0 +1,10 @@
+---
+
+- hosts: main
+  tasks:
+  
+   - name: copy a file
+     local_action:
+      module: copy
+      src: file.txt
+      dest: /tmp/myfile

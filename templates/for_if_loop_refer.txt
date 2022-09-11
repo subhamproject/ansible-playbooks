@@ -1,0 +1,6 @@
+https://www.ipspace.net/kb/Ansible/For-If-Jinja2.html
+https://www.redhat.com/sysadmin/ansible-jinja
+https://oznetnerd.com/2017/04/18/jinja2-selectattr-filter/
+https://jinja.palletsprojects.com/en/2.11.x/templates/
+https://ttl255.com/jinja2-tutorial-part-2-loops-and-conditionals/
+https://www.webforefront.com/django/usebuiltinjinjastatements.html

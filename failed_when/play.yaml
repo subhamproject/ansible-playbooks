@@ -1,0 +1,20 @@
+---
+- name: demo playbook to check failed when condition
+  hosts: main
+  gather_facts: false
+  become: true
+  vars:
+     service: nginx
+  tasks:
+    - name: print the service name
+      debug:
+        var: service
+    - name: check if nginx present
+      shell: systemctl status nginx |grep running
+      register: check
+    - name: install pkg
+      package:
+         name: "{{ item }}"
+         state: present
+      loop:
+         - "{{ service }}"

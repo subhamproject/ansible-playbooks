@@ -1,0 +1,16 @@
+- hosts: localhost
+  vars:
+    list:
+      - one
+      - two
+      - three
+  tasks:
+    - name: simulate long running op (15 sec), wait for up to 45 sec, poll every 5 sec
+      command: /bin/sleep 5
+      async: 10
+      poll: 0
+      register: result
+      with_items: ""
+
+    - debug:
+        msg: "Result: "

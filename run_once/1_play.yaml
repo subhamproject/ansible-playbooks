@@ -1,0 +1,38 @@
+---
+- name: Download Tomcat8 from tomcat.apache.org
+  hosts: main
+  vars:
+     ansible_user: vagrant
+  tasks:
+   - name: Create a Directory /opt/tomcat8
+     become: yes
+     file:
+       path: /opt/tomcat8
+       state: directory
+       mode: 0755
+       owner: "{{ ansible_user }}"
+       group: "{{ ansible_user }}"
+     delegate_to: localhost
+
+   - name : check if war file exist
+     stat:
+       path: /opt/tomcat8/jenkins.war
+     register: result
+     delegate_to: localhost
+
+   - name: Download Jenkins using get_url
+     become: yes
+     get_url:
+       url: https://get.jenkins.io/war-stable/2.346.3/jenkins.war
+       dest: /opt/tomcat8
+       mode: 0755
+       owner: "{{ ansible_user }}"
+       group: "{{ ansible_user }}"
+     run_once: true
+     delegate_to: localhost
+     when: not result.stat.exists
+
+   - name: Copy war file to all servers
+     copy:
+      src: /opt/tomcat8/jenkins.war
+      dest: /tmp 

@@ -1,0 +1,26 @@
+- name: Testing handler
+  hosts: main
+  gather_facts: false
+
+  tasks:
+
+    - name: set a task to success
+      shell: /bin/true
+      notify: "all task"
+
+  handlers:
+
+    - name: handler task 1
+      debug: 
+        msg: This is handler task 1
+      listen: "all task"
+
+    - name: handler task 2
+      debug: 
+        msg: This is handler task 2
+      listen: "all task"
+
+    - name: handler task 3
+      debug: 
+        msg: This is handler task 3
+      listen: "all task"

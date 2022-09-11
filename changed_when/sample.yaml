@@ -1,0 +1,23 @@
+---
+- name: Install a new client (https://confluence.example.com/foo/bar/biz-baz)
+  hosts: first
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Verify that the images NFS share is mounted
+      shell: "df -h | grep /vagrant"
+      register: nfs_check
+      ignore_errors: yes
+
+    # display the output of the previous command in a readable format
+    - debug: var=nfs_check.stdout_lines
+
+    - pause: |
+        prompt="
+        Examine the above output to verify that the /srv/images share is mounted.
+
+        Press Enter to continue or Ctrl-C to abort"
+
+    - name: Mount the NFS images share if it's not currently mounted
+      shell: "mount nfs.example.com:/srv/images /images"

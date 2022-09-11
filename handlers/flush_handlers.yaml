@@ -1,0 +1,18 @@
+- name: Testing handler
+  hosts: main
+  gather_facts: false
+
+  tasks:
+    - name: set a task to success
+      shell: /bin/true
+      notify: run_now
+
+    - name: Run handler now
+      meta: flush_handlers
+
+    - name: set a task to fail
+      shell: /bin/false
+ 
+  handlers:
+    - name: run_now
+      debug: msg="I am called from [ task 1 ]"

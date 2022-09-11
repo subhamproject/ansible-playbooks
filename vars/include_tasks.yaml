@@ -1,0 +1,13 @@
+---
+- name: demo play for include task
+  hosts: main
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: print msg
+      debug:
+        msg: "This is from include task example"
+        
+    - name: including task from file
+      include_tasks: user_creation.yaml

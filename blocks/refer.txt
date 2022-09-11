@@ -1,0 +1,2 @@
+https://richm.github.io/how-to-catch-and-reraise-errors-in-ansible.html
+https://www.golinuxcloud.com/ansible-block-rescue-always/

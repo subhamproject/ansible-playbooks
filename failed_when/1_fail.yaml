@@ -1,0 +1,15 @@
+- name: Testing playbook
+  hosts: main
+  gather_facts: no
+  vars: 
+        files_to_check: 
+                - /root/file1
+                - /root/file2
+                - /root/file3
+  tasks:
+   - name: Check if all files exists 
+     stat: 
+       path: "{{item}}"
+     with_items: "{{files_to_check }}" 
+     register: file_check
+     failed_when: file_check.stat.exists == False 

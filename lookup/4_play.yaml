@@ -1,0 +1,12 @@
+---
+- name: Ansible Split Examples
+  hosts: localhost
+  vars: 
+    - usernames : []
+  tasks:
+    - name: print only domain names from Email IDs with Split
+      set_fact:        
+        usernames: '{{ usernames + [ item | split(":") | first ] }}'
+      loop: "{{ lookup('file', '/etc/passwd').splitlines() | select('match','^(?!#)')}}"
+      
+    - debug: var=usernames

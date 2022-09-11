@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  tasks:
+   - debug:
+      msg="Population of Mumbai is {{lookup('csvfile', 'Mumbai file=file.csv delimiter=, col=2')}}"

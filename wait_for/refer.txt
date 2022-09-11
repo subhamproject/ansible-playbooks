@@ -1,0 +1,5 @@
+https://www.middlewareinventory.com/blog/ansible-wait_for-examples/
+http://man.hubwiz.com/docset/Ansible.docset/Contents/Resources/Documents/docs.ansible.com/ansible/wait_for_module.html
+https://thethingidid.com/2020/10/11/rebooting-with-ansible/
+https://megamorf.gitlab.io/2020/03/20/ansible-wait-for-restart/
+https://copyprogramming.com/howto/difference-between-ansible-s-wait-for-and-wait-for-connection

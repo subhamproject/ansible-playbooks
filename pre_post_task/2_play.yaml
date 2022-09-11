@@ -1,0 +1,15 @@
+---
+- hosts: main
+  serial: 1
+  strategy: free
+  gather_facts: false
+  
+
+  post_tasks:
+    - name: this is a post task
+      debug:
+        msg: "this is a post task"
+  pre_tasks:
+    - name: this is a pre task
+      debug:
+        msg: "this is a pre task"

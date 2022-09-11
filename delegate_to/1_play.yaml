@@ -1,0 +1,12 @@
+- hosts: main
+  vars_prompt:
+     - name: dvd_dir
+       private: no
+       prompt: "enter dvd mount point"
+  tasks:
+  - name : print the var details you just entered
+    shell: "echo {{ dvd_dir }}"
+    register: output
+
+  - debug:
+      var: output

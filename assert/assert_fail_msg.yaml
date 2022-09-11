@@ -1,0 +1,14 @@
+---
+- hosts: main
+  gather_facts: no
+  vars:
+     user_name: mary
+
+  tasks:
+    - name: Checking user_name
+      assert:
+        that:
+          - user_name is defined
+          - '"mary" == user_name'
+        fail_msg: Please provide username with six letter
+        success_msg: correct username provided

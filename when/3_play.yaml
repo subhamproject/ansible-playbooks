@@ -1,0 +1,26 @@
+---
+- name: demo playbook for when var is defined
+  hosts: main
+  gather_facts: false
+  become: true
+  serial: 1
+  strategy: free
+  vars:
+    execute:
+
+  pre_tasks:
+     - name: getting the facts ready
+       setup:
+        filter:
+          - 'ansible_distribution'
+          - 'ansible_os_family'
+          - 'ansible_*'
+  tasks:
+   - name: install packages on server {{ inventory_hostname }}
+     package:
+       name: "{{ item }}"
+       state: present
+     loop:
+       - vim
+       - git
+     when: execute is defined

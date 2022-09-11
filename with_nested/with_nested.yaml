@@ -1,0 +1,23 @@
+---
+- hosts: main
+  gather_facts: false
+  vars:
+    server_type:
+        - linux
+        - centos
+    pkgs:
+       - vim
+       - git
+       - ansible
+       - jenkins
+       - httpd
+
+
+  tasks:
+   - name: demo for with nested
+     debug:
+        msg: "mapping for {{ item.0 }} are {{ item.1 }} "
+     with_nested:
+           - "{{ server_type }}"
+           - " {{ pkgs }}"
+

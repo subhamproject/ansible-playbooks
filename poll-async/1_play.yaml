@@ -1,0 +1,37 @@
+---
+- name: Download Jenkins war file from web
+  hosts: main
+  become: true
+  tasks:
+   - name: Create a Directory /opt/jenkins
+     file:
+       path: /opt/jenkins
+       state: directory
+       mode: 0755
+       owner: "{{ ansible_user }}"
+       group: "{{ ansible_user }}"
+
+   - name : check if war file exist
+     stat:
+       path: /opt/jenkins/jenkins.war
+     register: result
+
+   - name: Download Jenkins using get_url
+     get_url:
+       url: https://get.jenkins.io/war-stable/2.346.3/jenkins.war
+       dest: /opt/jenkins
+       mode: 0755
+       owner: "{{ ansible_user }}"
+       group: "{{ ansible_user }}"
+     async: 600
+     poll: 0
+     register: download
+     when: not result.stat.exists
+
+   - name: Checking the Job Status running in background
+     async_status:
+       jid: "{{ download.ansible_job_id }}"
+     register: job_result
+     until: job_result.finished 
+     delay: 5
+     retries: 30

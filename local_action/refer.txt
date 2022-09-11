@@ -1,0 +1,5 @@
+https://linuxhint.com/ansible-local-action-module/
+
+https://www.tech693.com/2016/08/ansible-local-action.html
+
+https://technoteshelp.com/ansible-local_action-example-how-does-it-work/

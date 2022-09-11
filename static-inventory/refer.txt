@@ -1,0 +1,10 @@
+hostvars :- These are lookup variables or facts set on another host.
+
+groups :- This is the list of groups in the inventory. This can be used to walk over a group of nodes to discover its topology information.
+
+group_names :- This is the list of groups that the node belongs to.
+
+inventory_hostname :- This is the hostname set in the inventory file. It can be different to the ansible_hostname...
+
+
+#https://agarthetiger.github.io/mkdocs/ansible/vars-and-facts/

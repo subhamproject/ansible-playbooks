@@ -1,0 +1,24 @@
+---
+- hosts: first
+  gather_facts: true
+  become: true
+  tasks:
+
+
+  - name: reboot vm
+    shell: "sleep 2 && reboot"
+    async: 1
+    poll: 0
+
+  - name: Validating if the ssh is UP and OPENED the PORT
+    tags: reboot
+    wait_for:
+        host: "{{inventory_hostname}}"
+        port: 22
+        delay: 10
+        timeout: 30
+        state: started
+        msg: "SSH PORT is not Listening"
+    ignore_errors: true
+    delegate_to: localhost
+

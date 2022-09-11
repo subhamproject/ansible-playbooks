@@ -1,0 +1,13 @@
+---
+- name: demo play for import task
+  hosts: main
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: print msg
+      debug:
+        msg: "This is from import task example"
+        
+    - name: importing task from file
+      import_tasks: user_creation.yaml

@@ -1,0 +1,13 @@
+- hosts: main
+  become: yes
+ 
+  tasks:
+  - name : Create a File with Content
+    copy:
+        dest: /opt/myfile.txt
+        content: |
+          This is first line
+          This is second line
+        owner: vagrant
+        group: vagrant
+        mode: 0777

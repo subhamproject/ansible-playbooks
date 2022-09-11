@@ -1,0 +1,18 @@
+[first]
+server1.devopsforall.com
+
+[second]
+server2.devopsforall.com
+
+[main:children]
+first
+second
+
+[alias]
+host_1 ansible_host=server1.devopsforall.com ansible_ssh_pass=vagrant ansible_ssh_user=vagrant
+host_2 ansible_host=server2.devopsforall.com ansible_ssh_pass=vagrant ansible_ssh_user=vagrant
+
+
+#or: webservers:dbserver
+#exclude: webserver:!phoenix
+#intersection: webservers:&staging

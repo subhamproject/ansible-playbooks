@@ -1,0 +1,25 @@
+---
+- name: demo playbook for run once testing
+  hosts: main
+  gather_facts: false
+  serial: 5
+  vars:
+   filename: subham.txt
+
+  tasks:
+  - name: Create File with run once
+    file:
+      path: /tmp/{{ item }}
+      state: touch
+      mode: 0777
+      owner: "{{ ansible_user }}"
+      group: "{{ ansible_user }}"
+    run_once: true
+    loop:
+      -  "{{ filename }}"
+  - name: check if file got created
+    shell: ls -l /tmp/subham.txt
+    register: result
+
+  - debug:
+     var: result

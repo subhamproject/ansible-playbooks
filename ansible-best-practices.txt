@@ -1,0 +1,4 @@
+https://newrelic.com/blog/best-practices/ansible-best-practices-guide
+https://www.clockworknet.com/blog/2020/06/05/mastering-ansible-check-mode/
+
+https://dev.to/admantium/ansible-influencing-action-execution-with-conditions-and-branches-578h -->. IMP

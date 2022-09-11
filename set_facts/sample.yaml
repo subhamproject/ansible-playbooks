@@ -1,0 +1,14 @@
+---
+- name: Ansible List Examples
+  hosts: main
+  tasks:
+    - name: Create a List variable and print it
+      set_fact: 
+        Continents: ["Asia","Africa","Europe","North America","South America","Antarctica","Australia"]
+        Countries : ['India','Japan', 'Norway', 'Netherlands', 'Switzerland', 'Germany', 'United States of America']
+        
+    - name: Print the Continents
+      debug: var=Continents
+    - name: Print the Countries
+      debug: var=countries
+ 

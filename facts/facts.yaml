@@ -1,0 +1,13 @@
+---
+- name: Getting facts from all the servers
+  hosts: main
+  gather_facts: true
+
+  tasks:
+  - name: displaying facts via ansible facts
+    debug:
+      var: ansible_facts
+
+  - name: display facts via hostvars
+    debug:
+      var: hostvars

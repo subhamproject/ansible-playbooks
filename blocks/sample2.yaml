@@ -1,0 +1,15 @@
+- name: Try to execute skript
+    block:
+      - name: Check Connection over DNS
+        command: ping nclient01.demo.local -c 2
+        register: output
+    rescue:
+      - name: "this will fail"
+        block:
+          - name: it will be false
+            command: /bin/false
+            register: output
+        rescue:
+          - name: "this works"
+            command: ping 192.168.33.1 -c 2
+            register: output

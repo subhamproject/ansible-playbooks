@@ -1,0 +1,18 @@
+---
+- name: Handlers testing
+  hosts: main
+  gather_facts: false
+
+  tasks:
+    - name: Get the hostname
+      shell: hostname -s
+      register: hostname
+      notify: print hostname
+  handlers:
+    - name: print hostname
+      debug:
+       var: hostname.stdout
+
+    - name: print IP
+      debug:
+       var: IP.stdout

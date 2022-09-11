@@ -1,0 +1,13 @@
+---
+- name: Ansible Retry Examples
+  hosts: main
+  tasks:
+  - name: Job Status Check
+    uri:
+      url: http://localhost:8080
+      return_content: yes
+    register: result
+    until: "'Completed' in result.content"
+    ignore_errors: yes
+    retries: 2
+    delay: 10

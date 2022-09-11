@@ -1,0 +1,18 @@
+---
+- hosts: main
+  gather_facts: false
+  vars:
+    server_type:
+         - name: Linux
+           type: old
+         - name: Solaris
+           type: new
+
+
+  tasks:
+   - name: print the values
+     debug:
+        msg: "values are {{ item.name }} and {{ item.type}} "
+     with_items:
+           - "{{ server_type }}"
+

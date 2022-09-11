@@ -1,0 +1,34 @@
+---
+- name: demo playbook for when condition based on result
+  hosts: main
+  gather_facts: false
+  become: true
+  serial: 1
+  strategy: free
+  
+
+  pre_tasks:
+     - name: getting the facts ready
+       setup:
+        filter:
+          - 'ansible_distribution'
+          - 'ansible_os_family'
+          - 'ansible_*'
+  tasks:
+   - name: set to true
+     shell: /bin/true
+     register: result
+
+   - name: print result
+     debug:
+       var: result
+
+
+   - name: install packages on server
+     package:
+       name: "{{ item }}"
+       state: present
+     loop:
+       - vim
+       - git
+     when: result.rc == 0

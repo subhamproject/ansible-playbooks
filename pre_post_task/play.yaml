@@ -1,0 +1,15 @@
+---
+- hosts: main
+  serial: 1
+  strategy: free
+  gather_facts: false
+  pre_tasks:
+      - debug: 
+         msg: "Beginning to configure web server.."
+  tasks:
+     - debug: 
+         msg: "Main play is running"
+  post_tasks:
+     - debug: 
+         msg: "Done configuring nginx web server..."
+

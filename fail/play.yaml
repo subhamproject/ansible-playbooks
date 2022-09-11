@@ -1,0 +1,9 @@
+---
+ - name: Find files - Playbook
+   hosts: main
+
+   pre_tasks:
+   - name: Make Sure the mandatory input values are passed (Directory and SearchString)
+     fail:
+      msg: "Directory and SearchString are the mandatory values to execute the playbook. Variables must be passed as extra variable -e "
+     when: Directory is not defined or SearchString is not defined

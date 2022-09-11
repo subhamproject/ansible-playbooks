@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  vars:
+   data: "{{ lookup('file', '/etc/passwd').splitlines()|select('match','^(?!#)') }}"
+  tasks:
+   - debug: msg="File contents {{ data }}"

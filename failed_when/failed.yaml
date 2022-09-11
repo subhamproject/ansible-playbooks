@@ -1,0 +1,14 @@
+---
+- name: Example
+  hosts: main
+  vars:
+    var: test
+  gather_facts: no
+
+  tasks:
+    - name: Example
+      uri:
+        url: http://www.example.com
+        return_content: yes
+      register: this
+      failed_when: "'Example' not in this.content{{ var }}"

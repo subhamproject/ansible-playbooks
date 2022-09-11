@@ -1,0 +1,22 @@
+---
+- name: demo playbook to check ignore erros
+  hosts: main
+  gather_facts: false
+  become: true
+  any_errors_fatal: true
+  vars:
+     service: nginx
+  tasks:
+    - name: print the service name
+      debug:
+        var: service
+    - name: check if nginx present
+      shell: systemctl status nginx |grep running
+      register: check
+      ignore_errors: true
+    - name: install pkg if not exists
+      package:
+         name: "{{ item }}"
+         state: present
+      loop:
+         - "{{ service }}"

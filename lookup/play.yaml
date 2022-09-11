@@ -1,0 +1,5 @@
+---
+- hosts: main
+  tasks:
+   - debug: msg="TXT record {{ lookup('dig', 'yahoo.com./TXT') }}"
+   - debug: msg="IP of yahoo.com {{lookup('dig', 'yahoo.com', wantlist=True)}}"

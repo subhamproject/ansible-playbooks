@@ -1,0 +1,23 @@
+---
+- name: demo playbook for when statement
+  hosts: main
+  gather_facts: false
+  become: true
+  
+
+  pre_tasks:
+     - name: getting the facts ready
+       setup:
+        filter:
+          - 'ansible_distribution'
+          - 'ansible_os_family'
+  tasks:
+   - name: install packages on server {{ inventory_hostname }}
+     package:
+       name: "{{ item }}"
+       state: present
+     loop:
+       - vim
+       - git
+     when: (ansible_os_family | lower == "redhat" or ansible_os_family | lower == "debian") 
+

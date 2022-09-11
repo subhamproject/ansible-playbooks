@@ -1,0 +1,16 @@
+---
+- hosts: main
+  serial: 1
+  strategy: free
+  gather_facts: false
+
+  pre_tasks: 
+      - setup:
+          filter:
+            - 'ansible_*'
+      - debug: 
+          msg: "Started deployment Current time is {{ansible_date_time.date}} {{ansible_date_time.time}}" 
+     
+  post_tasks: 
+      - debug: 
+          msg: "Completed deployment Current time is {{ansible_date_time.date}} {{ansible_date_time.time}}" 

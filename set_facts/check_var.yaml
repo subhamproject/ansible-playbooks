@@ -1,0 +1,11 @@
+---
+- name: demo playbook to test set fact
+  hosts: main
+  gather_facts: false
+  vars:
+    var_time: "var: {{lookup('pipe', 'date \"+%H:%M:%S\"')}}"
+
+  tasks:
+  - debug: var=var_time
+  - command: sleep 5
+  - debug: var=var_time

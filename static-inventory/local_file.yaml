@@ -1,0 +1,16 @@
+---
+- name: create localfile
+  hosts: main
+  gather_facts: true
+  vars:
+   store_files_path: /tmp
+
+
+  tasks:
+  - name: Create File with hosts and IP address.
+    lineinfile:
+     dest: "{{ store_files_path }}/{{ ansible_date_time.date }}/{{ ansible_date_time.time }}/hosts.txt"
+     create: yes
+     line: "{{ ansible_hostname }}:{{ ansible_default_ipv4.address }}"
+    when:  "'main' in group_names"
+    delegate_to: "{{ inventory_hostname }}"

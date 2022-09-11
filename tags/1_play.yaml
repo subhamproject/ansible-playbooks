@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Update apt cache 
+      apt:
+       update_cache: yes
+      tags:
+        - update_cache 
+               
+    - name: Upgrade all packages on servers
+      apt: 
+        name: "*"
+        state: latest
+      tags: 
+       - upgrade_all  

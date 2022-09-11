@@ -1,0 +1,17 @@
+- name: Package Installation
+  hosts: ubuntu.anslab.com
+  gather_facts: false
+  become: true
+  tags: pkg_mt
+
+  tasks:
+
+    - name: Updating cache ( sudo apt update )
+      apt:
+        update_cache: true
+      tags: cache_update
+
+    - name: Remove packages - no dependency
+      apt:
+        autoremove: yes
+      tags: remove

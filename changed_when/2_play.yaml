@@ -1,0 +1,12 @@
+#!/usr/bin/env ansible-playbook -v
+- hosts: 'localhost'
+  tasks:
+
+  - name: getting list of foobar processes with ignore errors
+    shell: pgrep foobar
+    ignore_errors: yes
+
+  - name: getting list of foobar processes with changed_when
+    shell: pgrep foobar
+    failed_when: false
+    changed_when: false

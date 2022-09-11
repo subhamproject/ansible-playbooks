@@ -1,0 +1,4 @@
+https://code-maven.com/waiting-with-ansible-pausing-playbook
+https://cloudaffaire.com/faq/ansible-pause-for-every-host/
+
+

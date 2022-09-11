@@ -1,0 +1,14 @@
+---
+
+- hosts: main
+  tasks:
+
+  - name: print httpd version
+    command: /usr/sbin/httpd -v
+    ignore_errors: true
+
+  - name: install httpd
+    yum:
+     name: httpd
+     state: latest
+    delegate_to: web.jboss.etm1

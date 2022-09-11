@@ -1,0 +1,19 @@
+ansible-playbook play.yaml --tags tag1
+ansible-playbook play.yaml --tags tag2
+ansible-playbook play.yaml --tags tagged
+ansible-playbook play.yaml --tags untagged
+ansible-playbook play.yaml --tags "update_cache,upgrade_all"
+ansible-playbook tags_testing.yml --skip-tags "cache_update,remove"
+ansible-playbook tags_testing.yml --list-tasks --tags remove
+
+
+ansible-playbook tags_testing.yml --list-tags
+
+
+Special Tags
+There are two special tags named always and never.
+
+ALWAYS - Always run the task unless you explicitly use --skip-tags to stop running the task.
+NEVER - A task will never run unless you explicitly use the --tags flag to run the task.
+In any case, if you want to skip tasks that are tagged with the "always" tag then you have to use skip tags.
+

@@ -1,0 +1,4 @@
+---
+#This vars will be imported to playbook
+http_port: 8080
+service_name: jenkins

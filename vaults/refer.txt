@@ -1,0 +1,1 @@
+https://www.rogerperkin.co.uk/network-automation/ansible/vault-tutorial/

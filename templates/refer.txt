@@ -1,0 +1,6 @@
+https://shawnliu.me/post/list-of-ip-in-ansible-templates/
+https://www.tailored.cloud/devops/advanced-list-operations-ansible/
+https://aap2.demoredhat.com/exercises/ansible_rhel/1.6-templates/
+https://tekneed.com/using-ansible-template-module-with-ansible-jinja2/
+https://www.tecmint.com/create-ansible-templates-to-create-configuration-for-nodes/
+https://gist.github.com/halberom/794c06598f40ccc31560

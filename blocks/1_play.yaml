@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars:
+    debugging: true
+  tasks:
+    - block:
+        - name: First Task
+          debug:
+            msg: First Task
+
+        - name: Second Task
+          debug:
+            msg: Second Task
+
+        - name: Set debugging To False
+          set_fact:
+            debugging: false
+
+      when: debugging|bool

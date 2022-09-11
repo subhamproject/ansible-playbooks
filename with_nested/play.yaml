@@ -1,0 +1,31 @@
+---
+# YAML documents begin with the document separator ---
+# the minus in YAML this indicates a list item. The playbook contains a list
+# of plays, with each play being a dictionary
+- hosts: main
+  become: true
+  vars:
+    users_with_items:
+      - name: "alice"
+        personal_directories:
+          - "bob"
+          - "carol"
+          - "dan"
+      - name: "bob"
+        personal_directories:
+          - "alice"
+          - "carol"
+          - "dan"
+        common_directories:
+          - ".ssh"
+          - "loops"
+  tasks:
+    - name: create common users directories using with_nested loop
+      file:
+        dest: "/home/{{item.0.name}}/{{ item.1 }}"
+        state: directory
+      with_nested:
+        - "{{ users_with_items }}"
+        - "{{ common_directories }}"
+# three dots indicate the end of a YAML document
+...

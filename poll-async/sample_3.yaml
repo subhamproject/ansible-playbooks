@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  vars:
+    list:
+      - one
+      - two
+      - three
+  tasks:
+    - name: simulate long running op (15 sec), wait for up to 45 sec, poll every 5 sec
+      command: /bin/sleep 5
+      async: 10
+      poll: 0
+      register: result
+      with_items: 
+       - ""
+
+    - debug:
+        msg: "All items completed"
+
+    - name: Check sync status
+      async_status:
+        jid: ""
+      loop: 
+       - ""
+      loop_control:
+        loop_var: "async_result_item"
+      register: async_poll_results
+      until: async_poll_results.finished
+      retries: 300

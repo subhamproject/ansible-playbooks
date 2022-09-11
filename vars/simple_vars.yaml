@@ -1,0 +1,20 @@
+---
+- name: simple define vars at play level
+  hosts: main
+  gather_facts: false
+  vars:
+   deploy: yes
+   type: linux
+  tasks:
+    - name: display vars
+      debug:
+        var: "{{ item }}"
+      loop:
+        - deploy
+        - type
+    - name: display vars message
+      debug:
+        msg: vars values is {{ item }}
+      loop:
+        - "{{ deploy }}"
+        - "{{ type }}"
