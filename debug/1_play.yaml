@@ -1,6 +1,10 @@
 ---
 - name: Ansible debug module in action
-  hosts: main
+  hosts: "{{ serv }}"
+  remote_user: "{{ user }}"
+  become: true
+  become_method: sudo
+  become_user: root 
   gather_facts: false
   ignore_unreachable: true
   tasks:
