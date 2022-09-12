@@ -2,6 +2,7 @@
 - name: Ansible debug module in action
   hosts: main
   gather_facts: false
+  ignore_unreachable: true
   tasks:
           - name: Print system uptime
             shell: uptime -p
