@@ -1,0 +1,18 @@
+---
+#https://www.unixarena.com/2018/12/ansible-tower-awx-store-credential-custom-credentials-type.html/
+- name: checking Jenkins vars from custom Credentials
+  hosts: main
+  vars:
+  # Fetch subscription-manager custom credentials ansible tower
+    username: "{{ jenkins_username }}"
+    password: "{{ jenkins_password }}"
+
+  tasks:
+  - name: Register host with subscription-manager
+    shell:
+      cmd: |
+         echo "Jenkins username is {{ username }}"
+         echo "Jenkins Password is {{ password }}"
+    register: output
+
+  - debug: var=output
