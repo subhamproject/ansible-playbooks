@@ -1,1 +1,15 @@
 https://www.middlewareinventory.com/blog/how-to-copy-files-between-remote-servers-ansible-fetch-sync/
+- name: Sync Push task - Executed on source host "{{groups['app'][0]}}"
+  hosts: "{{groups['app'][1]}}" 
+  user: wlsusr
+  tasks:
+    - name: Copy the file from mwiapp01 to mwiapp02 using Method Push
+      tags: sync-push
+      synchronize:
+        src: "{{ item }}"
+        dest: "{{ item }}"
+        mode: push
+      delegate_to: "{{groups['app'][0]}}"
+      register: syncfile
+      with_items:
+       - "/tmp/app01-to-app02.jar"
