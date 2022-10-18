@@ -8,4 +8,4 @@
   tasks:
     - name: Print the value of a variable
       debug:
-       msg: "{{ lookup("env", "greetings") }}, Welcome to {{ lookup("env", "site") }}."
+       msg: "{{ lookup('env', 'greetings') }}, Welcome to {{ lookup('env', 'site') }}."
