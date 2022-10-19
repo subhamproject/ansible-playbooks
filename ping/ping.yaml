@@ -8,5 +8,5 @@
   gather_facts: false
   ignore_unreachable: true
   tasks:
-      - name: Test Ping Connection
-        ping:
+  - name: Test Ping Connection
+    ping:
