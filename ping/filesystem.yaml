@@ -7,7 +7,7 @@
   serial: 1
   become_user: root 
   gather_facts: false
-  ignore_unreachable: true
+  #ignore_unreachable: true
   tasks:
   - name: Get filesystem Details
     shell: df -h
