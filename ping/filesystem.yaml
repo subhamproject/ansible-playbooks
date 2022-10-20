@@ -13,4 +13,4 @@
     register: space
   - name:  filesytem details on {{ inventory_hostname }} is
     debug:
-     msg: "{{ space }}"
+     msg: "{{ space.stdout }}"
