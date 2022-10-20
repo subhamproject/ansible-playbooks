@@ -1,0 +1,13 @@
+---
+- name: server reachable
+  hosts: "{{ serv }}"
+  remote_user: "{{ user }}"
+  become: true
+  become_method: sudo
+  serial: 1
+  become_user: root 
+  gather_facts: false
+  #ignore_unreachable: true
+  tasks:
+  - debug: 
+     msg: "Server {{ inventory_hostname }} is not reachable"
