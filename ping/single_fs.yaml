@@ -1,5 +1,5 @@
 ---
-- hosts: {{ serv }}
+- hosts: "{{ serv }}"
   gather_facts: no
 
   tasks:
