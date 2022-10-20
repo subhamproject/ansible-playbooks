@@ -1,6 +1,7 @@
 ---
 - hosts: "{{ serv }}"
   gather_facts: no
+  remote_user: "{{ user }}"
   serial: 1
 
   tasks:
