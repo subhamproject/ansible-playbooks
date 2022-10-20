@@ -11,5 +11,6 @@
   - name: Get filesystem Details
     shell: df -h
     register: space
-  - debug:
+  - name:  filesytem details on {{ inventory_hostname }} is
+    debug:
      msg: "{{ space }}"
