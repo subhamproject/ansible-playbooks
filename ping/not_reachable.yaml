@@ -9,5 +9,8 @@
   gather_facts: false
   #ignore_unreachable: true
   tasks:
+  - name: get uptime
+    shell: "uptime -p"
+    register: output
   - debug: 
-     msg: "Server {{ inventory_hostname }} is not reachable"
+     msg: "uptime of server is {{ output.stdout }}"
