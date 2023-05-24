@@ -1,0 +1,11 @@
+https://gist.github.com/mvneves/a6a69a53f039b3755900
+
+ssh-add ~/my-ssh-key.pem
+Could not open a connection to your authentication agent.
+
+eval `ssh-agent -s`
+Agent pid 13442
+$ ssh-add ~/my-ssh-key.pem
+Identity added: /home/user/my-ssh-key.pem (/home/user/my-ssh-key.pem)
+$ git pull
+
