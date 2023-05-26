@@ -1,0 +1,11 @@
+#http://www.freekb.net/Article?id=954
+
+---
+- hosts: all
+  tasks:
+    - name: append 'Hello World' to /tmp/foo.txt
+      lineinfile:
+        path: /tmp/foo.txt
+        line: Hello World
+
+    - meta: clear_host_errors
