@@ -1,0 +1,23 @@
+---
+
+- hosts: managed1
+
+gather_facts: no
+
+become: true
+
+tasks:
+
+- name: Replace module demo
+
+ansible.builtin.replace:
+
+path: /etc/hosts
+
+after: '127.0.2.1'
+
+before: 'managed1'
+
+regexp: 'linuxways.net'
+
+replace: 'tecofers.com'

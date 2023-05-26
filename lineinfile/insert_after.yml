@@ -1,0 +1,7 @@
+- hosts: 127.0.0.1
+  tasks:
+    - name: Ansible update IP address
+      lineinfile:
+        path: /etc/ansible/ansible.cfg
+        line: 'inventory  = /home/linuxtechi/hosts'
+        insertafter: '\[defaults\]'

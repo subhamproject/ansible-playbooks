@@ -1,0 +1,19 @@
+---
+
+- hosts: managed1(Name of your target node)
+
+gather_facts: no
+
+become: true
+
+tasks:
+
+- name: Replace module demo
+
+ansible.builtin.replace:
+
+path: /etc/hosts
+
+regexp: '(\s+)managed1\.anslab\.com(\s+.*)?$'
+
+replace: '\1linuxhint.com\2'

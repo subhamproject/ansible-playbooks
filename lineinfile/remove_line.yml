@@ -1,0 +1,7 @@
+- hosts: 127.0.0.1
+  tasks:
+    - name: Ansible update IP address
+      lineinfile:
+        path: /etc/hosts
+        line: ‘173.82.56.150 wwwwlinuxtechi.io’
+        state: absent

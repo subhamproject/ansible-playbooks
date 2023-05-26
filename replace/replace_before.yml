@@ -1,0 +1,21 @@
+---
+
+- hosts: managed1(Name of your target node)
+
+gather_facts: no
+
+become: true
+
+tasks:
+
+- name: Replace module demo
+
+ansible.builtin.replace:
+
+path: /etc/hosts
+
+before: 'managed1'
+
+regexp: 'linuxhint.com'
+
+replace: 'linuxways.net'
