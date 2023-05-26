@@ -1,0 +1,22 @@
+#https://italchemy.wordpress.com/2021/07/23/ansible-with_items-vs-loop-whats-the-difference/comment-page-1/
+#
+#
+
+---
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: A simple list loop
+      debug: msg="The device IP is {{ item }}"
+      loop: '{{ ["10.10.10.1", "20.20.20.2", "30.30.30.3"] | flatten(1) }}'
+
+
+---
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: A simple list loop
+      debug: msg="My lucky numbers is {{ item }}"
+      loop: "{{ [1, [2, 3], 4, 'five'] | flatten(1) }}" 

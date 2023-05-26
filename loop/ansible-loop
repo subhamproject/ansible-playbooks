@@ -1,0 +1,22 @@
+#https://blog.learncodeonline.in/everything-about-ansible-loops
+
+cat vars.yml
+user_names:
+  - test9
+  - test10
+  - test11
+
+
+
+---
+- name: loops test using with_items
+  hosts: workers
+  become: true
+  vars_files:
+       - vars.yml
+  tasks:
+    - name: "Create local users"
+      user:
+        name: "{{ item }}"
+        state: present
+      with_items: '{{ user_names }}''

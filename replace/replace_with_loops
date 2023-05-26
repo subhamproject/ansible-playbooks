@@ -1,0 +1,14 @@
+---
+- name: Change Fox to Bear and Grape to Apple
+  hosts: localhost
+  tasks:
+  - name: Replace multiple lines and entries
+    replace:
+      path: story
+      # Line to Search/Match against
+      regexp: '{{item.From}}'
+      # Line to Replace with
+      replace: '{{item.To}}'
+    with_items:
+      - { From: '[fF]ox', To: 'Bear'}
+      - { From: '[Gg]rapes', To: 'Apples'}
